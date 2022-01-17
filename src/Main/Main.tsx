@@ -1,6 +1,6 @@
-import React from 'react';
-import classes from './main.module.css';
-import styleContainer from '../common/styles/container.module.css';
+import React from 'react'
+import classes from './main.module.css'
+import styleContainer from '../common/styles/container.module.css'
 
 function Main() {
     return (
