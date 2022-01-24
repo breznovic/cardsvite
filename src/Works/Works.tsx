@@ -9,8 +9,8 @@ function Works() {
             <div className={`${styleContainer.container} ${classes.skillsContainer}`}>
                 <h2 className={classes.title}>My works</h2>
                 <div className={classes.skills}>
-                    <Work title='HTML/CSS' description='Write tags'/>
-                    <Work title='JavaScript' description='Know about arrays'/>
+                    <Work title='Cats' description='I draw cats' image='https://cdn.mos.cms.futurecdn.net/AESHMNgFLdtaTbA7vsGjmn.jpg'/>
+                    <Work title='Mountains' description='I construct mountains' image='https://cdn.britannica.com/73/189273-131-DA3E2F9A/Denali-peak-center-Alaska-Range-North-America.jpg'/>
                 </div>
             </div>
         </div>
