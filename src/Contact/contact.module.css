@@ -1,0 +1,23 @@
+.contactBlock {
+    height: 100vh;
+    background-color: cadetblue;
+}
+
+.title {
+    background-color: gray;
+}
+
+.contactContainer {
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.contactItems {
+
+}
+
+.button {
+    background-color: brown;
+    height: 60px;
+    width: 120px;
+}

@@ -10,8 +10,15 @@ type PropsType = {
 function Work(props: PropsType) {
     return (
         <div className={classes.skill}>
-            <img className={classes.image} src={props.image}/>
+            <div style={{
+                backgroundImage: `url(${props.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: 500,
+                width: 500
+            }}>
                 <button className={classes.button}>Watch</button>
+            </div>
             <h3>{props.title}</h3>
             <span className={classes.description}>
                 {props.description}
