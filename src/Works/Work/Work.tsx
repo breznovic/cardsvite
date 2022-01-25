@@ -15,7 +15,10 @@ function Work(props: PropsType) {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 height: 500,
-                width: 500
+                width: 500,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
             }}>
                 <button className={classes.button}>Watch</button>
             </div>

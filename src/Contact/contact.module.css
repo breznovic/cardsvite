@@ -13,11 +13,25 @@
 }
 
 .contactItems {
+    border: black solid 1px;
+    height: 80%;
+    width: 60%;
+    margin: 150px;
+}
 
+.contactItem {
+    border: black solid 1px;
+    height: 80%;
+    width: 60%;
+    margin: 80px auto;
 }
 
 .button {
     background-color: brown;
     height: 60px;
     width: 120px;
+}
+
+.item {
+    margin-bottom: 20px;
 }
