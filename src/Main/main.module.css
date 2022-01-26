@@ -3,6 +3,13 @@
     background-color: blueviolet;
 }
 
+.wrapper {
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
 .text {
     width: 300px;
     background-color: lightblue;

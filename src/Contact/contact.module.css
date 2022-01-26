@@ -1,5 +1,5 @@
 .contactBlock {
-    height: 100vh;
+    min-height: 100vh;
     background-color: cadetblue;
 }
 
@@ -8,8 +8,10 @@
 }
 
 .contactContainer {
-    flex-direction: column;
-    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .contactItems {
@@ -20,6 +22,9 @@
 }
 
 .contactItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border: black solid 1px;
     height: 80%;
     width: 60%;
@@ -30,6 +35,8 @@
     background-color: brown;
     height: 60px;
     width: 120px;
+    margin-top: auto;
+    margin-bottom: 25px;
 }
 
 .item {

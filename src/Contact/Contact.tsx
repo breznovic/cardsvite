@@ -13,8 +13,8 @@ function Contact() {
                         <div className={classes.item}><input/></div>
                         <div className={classes.item}><input/></div>
                         <div className={classes.item}><textarea/></div>
+                        <button className={classes.button}>Send message</button>
                     </div>
-                    <button className={classes.button}>Send message</button>
                 </div>
             </div>
         </div>

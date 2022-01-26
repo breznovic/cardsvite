@@ -5,7 +5,7 @@ import Icon from "./Icon";
 function Footer() {
     return (
         <div className={classes.footer}>
-            <h3>Evgeniy Berezkin</h3>
+            <h3 className={classes.title}>Evgeniy Berezkin</h3>
             <div className={classes.items}>
                 <Icon icon='Telegram'/>
                 <Icon icon='Email'/>
