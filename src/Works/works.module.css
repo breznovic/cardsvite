@@ -1,6 +1,8 @@
 .skillsBlock {
    min-height: 100vh;
    background-color: burlywood;
+   display: flex;
+   align-items: center;
 }
 
 .skillsContainer {
@@ -14,7 +16,7 @@
    border: 1px solid;
    width: 100%;
    display: flex;
-   justify-content: space-between;
+   justify-content: space-around;
    flex-wrap: wrap;
 }
 
