@@ -1,22 +1,22 @@
 import React from 'react'
-import classes from'./app.module.css'
-import Header from "./Header/Header"
-import Main from "./Main/Main";
-import Skills from "./Skills/Skills";
-import Works from "./Works/Works";
-import Contact from "./Contact/Contact";
-import Footer from "./Footer/Footer";
+import classes from './app.module.css'
+import Navbar from "./components/Navbar";
+import {Grid} from "@mui/material";
+import Leftbar from "./components/Leftbar";
+import Feed from "./components/Feed";
+import Rightbar from "./components/Rightbar";
 
 function App() {
 
     return (
         <div className={classes.app}>
-            <Header/>
-            <Main/>
-            <Skills/>
-            <Works/>
-            <Contact/>
-            <Footer/>
+            <div><Navbar/>
+                <Grid container>
+                    <Grid item sm={2}><Leftbar/></Grid>
+                    <Grid item sm={7}><Feed/></Grid >
+                    <Grid item sm={3}><Rightbar/></Grid>
+                </Grid>
+            </div>
         </div>
     )
 }
