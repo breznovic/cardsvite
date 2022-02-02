@@ -8,7 +8,6 @@ const Post = () => {
             <Container style={{paddingTop: '10px'}}>
                 <Card>
                     <CardActionArea>
-                        <div></div>
                         <img src='https://core.brusselstimes.com/wp-content/uploads/2021/07/dfgfdgfdgsdfdg.jpeg'
                              style={{maxHeight: '50px'}}/>
                         <CardMedia
