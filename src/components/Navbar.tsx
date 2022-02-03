@@ -20,7 +20,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <AppBar position='static'>
+            <AppBar style={{position:'static'}}>
                 <Toolbar style={{display: 'flex', justifyContent: 'space-between'}}>
                     <Typography variant="h6">
                         My project

@@ -13,7 +13,7 @@ const Leftbar = () => {
             <Container style={{paddingTop: '10px'}}>
                 <div style={{
                     display: 'flex', flexDirection: 'column',
-                    alignItems: 'center', backgroundColor: 'darkblue', height: '87vh', color: 'white',
+                    alignItems: 'center', backgroundColor: 'darkblue', minHeight: '120vh', color: 'white',
                     paddingTop: '30px'
                 }}>
                     <Home/>

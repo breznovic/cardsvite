@@ -1,7 +1,11 @@
 import React from "react";
-import {Card, CardActionArea, CardContent, CardMedia, Container, Typography} from "@mui/material";
+import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Container, Typography} from "@mui/material";
 
-const Post = () => {
+type PropsType = {
+    text: string
+}
+
+const Post = (props: PropsType) => {
 
     return (
         <div>
@@ -14,9 +18,13 @@ const Post = () => {
                         title='My post'/>
                         <CardContent>
                             <Typography variant='h5'>My first post</Typography>
-                            <Typography variant='body1'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae, placeat!</Typography>
+                            <Typography variant='body1'><p>{props.text}</p></Typography>
                         </CardContent>
                     </CardActionArea>
+                    <CardActions style={{display:'flex', justifyContent:'center'}}>
+                        <Button size='small' color='primary'>Share</Button>
+                        <Button size='small' color='primary'>Learn more</Button>
+                    </CardActions>
                 </Card>
             </Container>
         </div>
