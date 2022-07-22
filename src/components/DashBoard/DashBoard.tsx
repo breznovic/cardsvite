@@ -1,6 +1,8 @@
 import React from 'react';
+import {ImageGallery} from '../Photo/ImageGallery';
 
 const DashBoard = () => {
+
     return (
         <div>
             Paella
@@ -8,7 +10,7 @@ const DashBoard = () => {
             Flight
             Apartment
             Weather
-            Photo
+            <ImageGallery/>
         </div>
     )
 }
