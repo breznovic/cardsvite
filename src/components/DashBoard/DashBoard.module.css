@@ -1,0 +1,10 @@
+.position {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    align-content: space-evenly;
+    flex: auto;
+}
+
