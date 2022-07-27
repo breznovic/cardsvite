@@ -11,14 +11,12 @@ const DashBoard = () => {
 
     return (
         <div className={s.position}>
-            <div className={s.cell}>
-                <Paella/>
-                <Taxi/>
-                <Flight/>
-                <Apartment/>
-                <Weather/>
-                <ImageGallery/>
-            </div>
+            <Paella/>
+            <Taxi/>
+            <Flight/>
+            <Apartment/>
+            <Weather/>
+            <ImageGallery/>
         </div>
     )
 }
