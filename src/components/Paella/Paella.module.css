@@ -2,3 +2,13 @@
     max-height: 150px;
     max-width: 150px;
 }
+
+span:first-child
+{
+    float: left;
+}
+
+span:last-child
+{
+    float: right;
+}

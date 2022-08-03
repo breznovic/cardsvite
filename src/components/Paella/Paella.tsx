@@ -30,15 +30,17 @@ const Paella = () => {
             <img
                 src='https://images.aws.nestle.recipes/resized/efc1f7093ccb8a17d90b4f33d203a732_image-1_1500x700_708_600.jpg'
                 className={s.paella}/>
-            <div>
-                <button>-</button>
-                {ingredients.map(i => (<div>
-                    <ul>{i.ingredient}</ul>
-                    <button>+</button>
-                </div>))}</div>
+                <span>
+                    <button>-</button>
+                </span>
+                <span>{ingredients.map(i => (
+                <ul>{i.ingredient}</ul>
+                </span>
+                    <span><button>+</button></span>
+               ))}
             <div>Paella price: {Math.floor(paellaPrice * 100) / 100} euro</div>
         </div>
     )
 }
 
-export default Paella;
+export default Paella
