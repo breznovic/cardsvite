@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {MouseEventHandler} from 'react'
 import {v1} from 'uuid'
 import s from '../Paella/Paella.module.css'
 
@@ -25,19 +25,21 @@ const Paella = () => {
 
     let paellaPrice = ingredients.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
 
+    let paellaIngredients = ingredients.map(i => (<>
+        <ul key={i.id}>
+            {i.ingredient}
+            <button className={s.floatRight} onClick={deleteIngredient}>-</button>
+        </ul>
+    </>))
+
+    let deleteIngredient = (e: MouseEventHandler<HTMLButtonElement>) => ingredients.filter(i => i.id !== i.id)
+
     return (
         <div>
-            <img
+            <div><img
                 src='https://images.aws.nestle.recipes/resized/efc1f7093ccb8a17d90b4f33d203a732_image-1_1500x700_708_600.jpg'
-                className={s.paella}/>
-                <span>
-                    <button>-</button>
-                </span>
-                <span>{ingredients.map(i => (
-                <ul>{i.ingredient}</ul>
-                </span>
-                    <span><button>+</button></span>
-               ))}
+                className={s.paella}/></div>
+            {paellaIngredients}
             <div>Paella price: {Math.floor(paellaPrice * 100) / 100} euro</div>
         </div>
     )
