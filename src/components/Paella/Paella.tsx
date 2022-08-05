@@ -1,4 +1,4 @@
-import React, {MouseEventHandler} from 'react'
+import React, {MouseEventHandler, useState} from 'react'
 import {v1} from 'uuid'
 import s from '../Paella/Paella.module.css'
 
@@ -23,26 +23,29 @@ const Paella = () => {
         {id: v1(), ingredient: 'Rice', price: 0.65},
     ]
 
+    let [delIngredient, setDelIngredient] = useState(ingredients)
+
+    const deleteIngredient = (id: string) => {
+        let filteredIngredient = delIngredient.filter(i => i.id !== id)
+        setDelIngredient(filteredIngredient)
+    }
+
     let paellaPrice = ingredients.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
 
-    let paellaIngredients = ingredients.map(i => (<>
+    let paellaIngredients = ingredients.map(i => (<div className={s.ingredient}>
         <ul key={i.id}>
             {i.ingredient}
-            <button className={s.floatRight} onClick={deleteIngredient}>-</button>
+            <button className={s.floatRight} onClick={() => deleteIngredient}>-</button>
         </ul>
-    </>))
+    </div>))
 
-    let deleteIngredient = (e: MouseEventHandler<HTMLButtonElement>) => ingredients.filter(i => i.id !== i.id)
-
-    return (
-        <div>
-            <div><img
-                src='https://images.aws.nestle.recipes/resized/efc1f7093ccb8a17d90b4f33d203a732_image-1_1500x700_708_600.jpg'
-                className={s.paella}/></div>
-            {paellaIngredients}
-            <div>Paella price: {Math.floor(paellaPrice * 100) / 100} euro</div>
-        </div>
-    )
+    return <div>
+        <div><img
+            src='https://images.aws.nestle.recipes/resized/efc1f7093ccb8a17d90b4f33d203a732_image-1_1500x700_708_600.jpg'
+            className={s.paella}/></div>
+        {paellaIngredients}
+        <div>Paella price: {Math.floor(paellaPrice * 100) / 100} euro</div>
+    </div>
 }
 
 export default Paella

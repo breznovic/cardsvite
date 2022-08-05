@@ -3,7 +3,14 @@
     max-width: 150px;
 }
 
-.floatRight
-{
+.ingredient {
+    border: black 1px solid;
+    line-height: 8px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.floatRight {
     float: right;
 }
