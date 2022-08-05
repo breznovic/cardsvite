@@ -6,12 +6,15 @@ import Weather from "../Weather/Weather";
 import Taxi from "../Taxi/Taxi";
 import Flight from "../Flight/Flight";
 import Apartment from "../Apartment/Apartment";
+import {IngredientsType} from "../../store/Ingredients";
 
-const DashBoard = () => {
+type PropsType =  {ingredients: IngredientsType}
+
+const DashBoard = (props: PropsType) => {
 
     return (
         <div className={s.position}>
-            <Paella/>
+            <Paella ingredients={props.ingredients}/>
             <Taxi/>
             <Flight/>
             <Apartment/>

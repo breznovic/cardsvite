@@ -1,41 +1,24 @@
-import React, {MouseEventHandler, useState} from 'react'
-import {v1} from 'uuid'
+import React, {useState} from 'react'
 import s from '../Paella/Paella.module.css'
+import {IngredientsType} from "../../store/Ingredients";
 
-const Paella = () => {
+type PropsType =  {ingredients: IngredientsType}
 
-    let ingredients = [
-        {id: v1(), ingredient: 'Onion', price: 0.14},
-        {id: v1(), ingredient: 'Bell pepper', price: 1},
-        {id: v1(), ingredient: 'Tomatoes', price: 0.39},
-        {id: v1(), ingredient: 'Parsley', price: 1},
-        {id: v1(), ingredient: 'Frozen peas', price: 1},
-        {id: v1(), ingredient: 'Bay leaf', price: 1},
-        {id: v1(), ingredient: 'Paprika', price: 1},
-        {id: v1(), ingredient: 'Saffron', price: 1},
-        {id: v1(), ingredient: 'Salt', price: 1},
-        {id: v1(), ingredient: 'Pepper', price: 1},
-        {id: v1(), ingredient: 'Shrimp', price: 1},
-        {id: v1(), ingredient: 'Mussels', price: 1},
-        {id: v1(), ingredient: 'Calamari', price: 1},
-        {id: v1(), ingredient: 'Olive oil', price: 1},
-        {id: v1(), ingredient: 'White wine', price: 1},
-        {id: v1(), ingredient: 'Rice', price: 0.65},
-    ]
+const Paella = (props: PropsType) => {
 
-    let [delIngredient, setDelIngredient] = useState(ingredients)
-
+    let [delIngredient, setDelIngredient] = useState(props.ingredients)
+    console.log(delIngredient)
     const deleteIngredient = (id: string) => {
         let filteredIngredient = delIngredient.filter(i => i.id !== id)
         setDelIngredient(filteredIngredient)
     }
 
-    let paellaPrice = ingredients.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
+    let paellaPrice = delIngredient.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
 
-    let paellaIngredients = ingredients.map(i => (<div className={s.ingredient}>
-        <ul key={i.id}>
+    let paellaIngredients = delIngredient.map(i => (<div className={s.ingredients}>
+        <ul key={i.id} className={s.ingredient}>
             {i.ingredient}
-            <button className={s.floatRight} onClick={() => deleteIngredient}>-</button>
+            <button className={s.floatRight} onClick={() => deleteIngredient(i.id)}>-</button>
         </ul>
     </div>))
 

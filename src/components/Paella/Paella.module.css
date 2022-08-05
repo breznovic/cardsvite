@@ -3,14 +3,19 @@
     max-width: 150px;
 }
 
-.ingredient {
-    border: black 1px solid;
+.ingredients {
+    margin-bottom: 1px;
+    border: 1px solid black;
     line-height: 8px;
-    flex-direction: row;
-    justify-content: space-between;
+}
+
+.ingredient {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .floatRight {
     float: right;
 }
+
