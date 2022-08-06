@@ -1,21 +1,29 @@
-import React, {useState} from 'react'
+import React, {ChangeEvent, useState} from 'react'
 import s from '../Paella/Paella.module.css'
 import {IngredientsType} from "../../store/Ingredients";
+import {v1} from "uuid";
 
-type PropsType =  {ingredients: IngredientsType}
+type PropsType = { ingredients: IngredientsType }
 
 const Paella = (props: PropsType) => {
 
-    let [delIngredient, setDelIngredient] = useState(props.ingredients)
-    console.log(delIngredient)
+    let [ingredientList, setIngredientList] = useState(props.ingredients)
+    let [newIngredientTitle, setNewIngredientTitle] = useState('')
+
     const deleteIngredient = (id: string) => {
-        let filteredIngredient = delIngredient.filter(i => i.id !== id)
-        setDelIngredient(filteredIngredient)
+        let filteredIngredient = ingredientList.filter(i => i.id !== id)
+        setIngredientList(filteredIngredient)
     }
 
-    let paellaPrice = delIngredient.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
+    function addNewIngredient(ingredient: string) {
+        let newIngredient = {id: v1(), ingredient: ingredient, price: 0.77}
+        let newIngredientsList = [newIngredient, ...ingredientList]
+        setIngredientList(newIngredientsList)
+    }
 
-    let paellaIngredients = delIngredient.map(i => (<div className={s.ingredients}>
+    let paellaPrice = ingredientList.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
+
+    let paellaIngredients = ingredientList.map(i => (<div className={s.ingredients}>
         <ul key={i.id} className={s.ingredient}>
             {i.ingredient}
             <button className={s.floatRight} onClick={() => deleteIngredient(i.id)}>-</button>
@@ -23,10 +31,21 @@ const Paella = (props: PropsType) => {
     </div>))
 
     return <div>
-        <div><img
+        <img
             src='https://images.aws.nestle.recipes/resized/efc1f7093ccb8a17d90b4f33d203a732_image-1_1500x700_708_600.jpg'
-            className={s.paella}/></div>
+            className={s.paella}/>
         {paellaIngredients}
+        <div className={s.ingredient}>
+            <input
+                value={newIngredientTitle}
+                placeholder={'Add your ingredient'}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                    setNewIngredientTitle(event.currentTarget.value)
+                }
+                }
+            />
+            <button className={s.floatRight} onClick={() => addNewIngredient(ingredient)}>+</button>
+        </div>
         <div>Paella price: {Math.floor(paellaPrice * 100) / 100} euro</div>
     </div>
 }
