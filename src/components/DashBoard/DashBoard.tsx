@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ImageGallery} from '../Photo/ImageGallery';
 import Paella from "../Paella/Paella";
 import s from '../DashBoard/DashBoard.module.css'
@@ -8,18 +8,18 @@ import Flight from "../Flight/Flight";
 import Apartment from "../Apartment/Apartment";
 import {IngredientsType} from "../../store/Ingredients";
 
-type PropsType =  {ingredients: IngredientsType}
+type PropsType = { ingredients: IngredientsType }
 
 const DashBoard = (props: PropsType) => {
 
     return (
         <div className={s.position}>
-            <Paella ingredients={props.ingredients}/>
-            <Taxi/>
-            <Flight/>
-            <Apartment/>
-            <Weather/>
-            <ImageGallery/>
+            <div className={s.element}><Paella ingredients={props.ingredients}/></div>
+            <div className={s.element}><Taxi/></div>
+            <div className={s.element}><Flight/></div>
+            <div className={s.element}><Apartment/></div>
+            <div className={s.element}><Weather/></div>
+            <div className={s.element}><ImageGallery/></div>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-.border {
-    border: solid 1px;
-    padding: 55px;
+.sunny {
+    max-height: 190px;
+    max-width: 190px;
 }

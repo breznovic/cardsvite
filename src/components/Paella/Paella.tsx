@@ -44,7 +44,7 @@ const Paella = (props: PropsType) => {
                 }
                 }
             />
-            <button className={s.floatRight} onClick={() => addNewIngredient(ingredient)}>+</button>
+            <button className={s.floatRight} onClick={() => addNewIngredient}>+</button>
         </div>
         <div>Paella price: {Math.floor(paellaPrice * 100) / 100} euro</div>
     </div>
