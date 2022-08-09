@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react'
+import React, {ChangeEvent, useState, KeyboardEvent} from 'react'
 import s from '../Paella/Paella.module.css'
 import {IngredientsType} from "../../store/Ingredients";
 import {v1} from "uuid";
@@ -15,10 +15,11 @@ const Paella = (props: PropsType) => {
         setIngredientList(filteredIngredient)
     }
 
-    function addNewIngredient(ingredient: string) {
-        let newIngredient = {id: v1(), ingredient: ingredient, price: 0.77}
+    function addNewIngredient() {
+        let newIngredient = {id: v1(), ingredient: newIngredientTitle, price: 0.77}
         let newIngredientsList = [newIngredient, ...ingredientList]
         setIngredientList(newIngredientsList)
+        setNewIngredientTitle('')
     }
 
     let paellaPrice = ingredientList.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
@@ -41,10 +42,14 @@ const Paella = (props: PropsType) => {
                 placeholder={'Add your ingredient'}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
                     setNewIngredientTitle(event.currentTarget.value)
-                }
-                }
+                }}
+                onKeyPress={(e: KeyboardEvent<HTMLInputElement>) => {
+                    if (e.charCode === 13) {
+                        addNewIngredient()
+                    }
+                }}
             />
-            <button className={s.floatRight} onClick={() => addNewIngredient}>+</button>
+            <button className={s.floatRight} onClick={addNewIngredient}>+</button>
         </div>
         <div>Paella price: {Math.floor(paellaPrice * 100) / 100} euro</div>
     </div>
