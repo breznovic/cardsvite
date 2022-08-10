@@ -10,21 +10,21 @@ const Paella = (props: PropsType) => {
 
     let [ingredientList, setIngredientList] = useState(props.ingredients)
     let [newIngredientTitle, setNewIngredientTitle] = useState('')
-    let [newIngredientPrice, setNewIngredientPrice] = useState('')
+    let [newIngredientPrice, setNewIngredientPrice] = useState(0)
     const [toggle, setToggle] = useState(false)
 
-    function addNewIngredientTitle() {
-        let newIngredient = {id: v1(), ingredient: newIngredientTitle, price: newIngredientPrice}
+    const addNewIngredientTitle = () => {
+        let newIngredient = {id: v1(), ingredient: newIngredientTitle, price: 0}
         let newIngredientsList = [newIngredient, ...ingredientList]
-        setIngredientList(newIngredientTitle)
+        setIngredientList(newIngredientsList)
         setNewIngredientTitle('')
     }
 
-    function addNewIngredientPrice() {
-        let newIngredient = {id: v1(), ingredient: newIngredientTitle, price: newIngredientPrice}
+    const addNewIngredientPrice = () => {
+        let newIngredient = {id: v1(), ingredient: '', price: newIngredientPrice}
         let newIngredientsList = [newIngredient, ...ingredientList]
-        setIngredientList(newIngredientPrice)
-        setNewIngredientPrice('')
+        setIngredientList(newIngredientsList)
+        setNewIngredientPrice(0)
     }
 
     const deleteIngredient = (id: string) => {
@@ -50,8 +50,23 @@ const Paella = (props: PropsType) => {
             {toggle && (
                 <div>
                     {paellaIngredients}
-                    <Input ingredients={props.ingredients} placeholder={'Add your ingredient'}/>
-                    <Input ingredients={props.ingredients} placeholder={`Add your ingredient's price`}/>
+                    <div><input
+                        value={newIngredientPrice}
+                        placeholder={`Add your ingredient's price`}
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                            setNewIngredientPrice(+event.currentTarget.value)
+                        }}
+                        onKeyPress={(e: KeyboardEvent<HTMLInputElement>) => {
+                            if (e.charCode === 13) {
+                                addNewIngredientPrice()
+                            }
+                        }}
+                    />
+                    </div>
+                    <button className={s.floatRight} onClick={addNewIngredientTitle}>+</button>
+                   {/*<Input setNewIngredientTitle={setNewIngredientTitle}*/}
+                   {/*       addNewIngredientTitle={addNewIngredientTitle}*/}
+                   {/*       newIngredientTitle={newIngredientTitle}/>*/}
                 </div>
             )}
         </div>

@@ -1,33 +1,29 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
-import s from '../Paella/Paella.module.css'
-import {v1} from 'uuid'
-import {IngredientsType} from '../../store/Ingredients'
+import s from './Input.module.css'
+import React, {ChangeEvent, KeyboardEvent} from "react";
 
 type PropsType = {
-    ingredients: IngredientsType
-    placeholder: string
+    addNewIngredientTitle: () => void
+    setNewIngredientTitle: (e: string) => void
+    newIngredientTitle: string
 }
 
-const Input = (props: PropsType) => {
-
-    let [ingredientList, setIngredientList] = useState(props.ingredients)
-
+const Input = ({addNewIngredientTitle, setNewIngredientTitle, newIngredientTitle}: PropsType) => {
     return <div>
         <div className={s.ingredient}>
             <div><input
-                value={newIngredientItem}
-                placeholder={props.placeholder}
+                value={newIngredientTitle}
+                placeholder={'Add your ingredient'}
                 onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                    setNewIngredientItem(event.currentTarget.value)
+                    setNewIngredientTitle(event.currentTarget.value)
                 }}
                 onKeyPress={(e: KeyboardEvent<HTMLInputElement>) => {
                     if (e.charCode === 13) {
-                        addNewIngredient()
+                        addNewIngredientTitle()
                     }
                 }}
             />
             </div>
-            <button className={s.floatRight} onClick={addNewIngredient}>+</button>
+            <button className={s.floatRight} onClick={addNewIngredientTitle}>+</button>
         </div>
     </div>
 }
