@@ -1,6 +1,6 @@
 import {v1} from 'uuid'
 
-type IngredientType = {
+export type IngredientType = {
     id: string
     ingredient: string
     price: number

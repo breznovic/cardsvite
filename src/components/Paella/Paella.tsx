@@ -1,15 +1,14 @@
-import React, {ChangeEvent, useState, KeyboardEvent} from 'react'
+import React, {useState} from 'react'
 import s from '../Paella/Paella.module.css'
-import {IngredientsType} from "../../store/Ingredients";
+import {IngredientsType, IngredientType} from "../../store/Ingredients";
 import {v1} from "uuid";
 import Input from "../Input/Input";
-import Hinput from "../Input/Hinput";
 
 type PropsType = { ingredients: IngredientsType }
 
 const Paella = (props: PropsType) => {
 
-    let [ingredientList, setIngredientList] = useState(props.ingredients)
+    let [ingredientList, setIngredientList] = useState<IngredientsType>(props.ingredients)
     let [newIngredientTitle, setNewIngredientTitle] = useState('')
     const [newIngredientPrice, setNewIngredientPrice] = useState('')
     const [toggle, setToggle] = useState(false)
@@ -19,13 +18,10 @@ const Paella = (props: PropsType) => {
         let newIngredientsList = [newIngredient, ...ingredientList]
         setIngredientList(newIngredientsList)
         setNewIngredientTitle('')
-    }
-
-    const addNewIngredientPrice = () => {
-        let newIngredientCost = {id: v1(), ingredient: '', price: newIngredientPrice}
-        let newIngredientsPriceList = [newIngredientCost, ...ingredientList]
+        let newIngredientCost: IngredientType = {id: v1(), ingredient: newIngredientTitle, price: +newIngredientPrice}
+        let newIngredientsPriceList: IngredientsType = [newIngredientCost, ...ingredientList]
         setIngredientList(newIngredientsPriceList)
-        setNewIngredientPrice(0)
+        setNewIngredientPrice('')
     }
 
     const deleteIngredient = (id: string) => {
@@ -51,12 +47,12 @@ const Paella = (props: PropsType) => {
             {toggle && (
                 <div>
                     {paellaIngredients}
-                   <Input setNewIngredientTitle={setNewIngredientTitle}
-                          addNewIngredientTitle={addNewIngredientTitle}
-                          newIngredientTitle={newIngredientTitle}/>
-                    <Hinput addNewIngredientPrice={addNewIngredientPrice}
-                            setNewIngredientPrice={setNewIngredientPrice}
-                            newIngredientPrice={newIngredientPrice}/>
+                    <Input setNewIngredientTitle={setNewIngredientTitle}
+                           addNewIngredientTitle={addNewIngredientTitle}
+                           newIngredientTitle={newIngredientTitle}
+                           setNewIngredientPrice={setNewIngredientPrice}
+                           newIngredientPrice={+newIngredientPrice}
+                    />
                 </div>
             )}
         </div>

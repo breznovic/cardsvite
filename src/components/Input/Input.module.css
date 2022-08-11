@@ -7,3 +7,9 @@
 .floatRight {
     float: right;
 }
+
+.ingredients {
+    margin-bottom: 1px;
+    border: 1px solid black;
+    line-height: 25px;
+}
