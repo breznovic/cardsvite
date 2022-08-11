@@ -3,6 +3,7 @@ import s from '../Paella/Paella.module.css'
 import {IngredientsType} from "../../store/Ingredients";
 import {v1} from "uuid";
 import Input from "../Input/Input";
+import Hinput from "../Input/Hinput";
 
 type PropsType = { ingredients: IngredientsType }
 
@@ -10,7 +11,7 @@ const Paella = (props: PropsType) => {
 
     let [ingredientList, setIngredientList] = useState(props.ingredients)
     let [newIngredientTitle, setNewIngredientTitle] = useState('')
-    let [newIngredientPrice, setNewIngredientPrice] = useState(0)
+    const [newIngredientPrice, setNewIngredientPrice] = useState('')
     const [toggle, setToggle] = useState(false)
 
     const addNewIngredientTitle = () => {
@@ -21,9 +22,9 @@ const Paella = (props: PropsType) => {
     }
 
     const addNewIngredientPrice = () => {
-        let newIngredient = {id: v1(), ingredient: '', price: newIngredientPrice}
-        let newIngredientsList = [newIngredient, ...ingredientList]
-        setIngredientList(newIngredientsList)
+        let newIngredientCost = {id: v1(), ingredient: '', price: newIngredientPrice}
+        let newIngredientsPriceList = [newIngredientCost, ...ingredientList]
+        setIngredientList(newIngredientsPriceList)
         setNewIngredientPrice(0)
     }
 
@@ -50,23 +51,12 @@ const Paella = (props: PropsType) => {
             {toggle && (
                 <div>
                     {paellaIngredients}
-                    <div><input
-                        value={newIngredientPrice}
-                        placeholder={`Add your ingredient's price`}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                            setNewIngredientPrice(+event.currentTarget.value)
-                        }}
-                        onKeyPress={(e: KeyboardEvent<HTMLInputElement>) => {
-                            if (e.charCode === 13) {
-                                addNewIngredientPrice()
-                            }
-                        }}
-                    />
-                    </div>
-                    <button className={s.floatRight} onClick={addNewIngredientTitle}>+</button>
-                   {/*<Input setNewIngredientTitle={setNewIngredientTitle}*/}
-                   {/*       addNewIngredientTitle={addNewIngredientTitle}*/}
-                   {/*       newIngredientTitle={newIngredientTitle}/>*/}
+                   <Input setNewIngredientTitle={setNewIngredientTitle}
+                          addNewIngredientTitle={addNewIngredientTitle}
+                          newIngredientTitle={newIngredientTitle}/>
+                    <Hinput addNewIngredientPrice={addNewIngredientPrice}
+                            setNewIngredientPrice={setNewIngredientPrice}
+                            newIngredientPrice={newIngredientPrice}/>
                 </div>
             )}
         </div>
