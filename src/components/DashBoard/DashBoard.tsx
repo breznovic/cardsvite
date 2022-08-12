@@ -13,13 +13,15 @@ type PropsType = { ingredients: IngredientsType }
 const DashBoard = (props: PropsType) => {
 
     return (
-        <div className={s.position}>
-            <div className={s.element}><Paella ingredients={props.ingredients}/></div>
-            <div className={s.element}><Taxi/></div>
-            <div className={s.element}><Flight/></div>
-            <div className={s.element}><Apartment/></div>
-            <div className={s.element}><Weather/></div>
-            <div className={s.element}><ImageGallery/></div>
+        <div className={s.image}>
+            <div className={s.position}>
+                <div className={s.element}><Paella ingredients={props.ingredients}/></div>
+                <div className={s.element}><Taxi/></div>
+                <div className={s.element}><Flight/></div>
+                <div className={s.element}><Apartment/></div>
+                <div className={s.element}><Weather/></div>
+                <div className={s.element}><ImageGallery/></div>
+            </div>
         </div>
     )
 }

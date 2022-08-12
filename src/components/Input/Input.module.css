@@ -4,12 +4,16 @@
     justify-content: space-between;
 }
 
-.floatRight {
-    float: right;
+.buttonRight {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .ingredients {
     margin-bottom: 1px;
     border: 1px solid black;
     line-height: 25px;
+    position: relative;
 }

@@ -1,10 +1,18 @@
 .position {
     display: flex;
     flex-direction: row;
-   align-items: first baseline;
 }
 
 .element {
     flex-basis: calc(100% / 3);
+}
+
+.image {
+    background-image: url('https://images.prismic.io/mystique/8ed8a93a-c40d-4337-9e95-e67c55cebe9f_miltiadis-fragkidis-nsP9T6iBCwI-unsplash.jpg?auto=compress,format');
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*min-height: 100vh;*/
+    min-height: 1250px;
+    background-position: center;
 }
 

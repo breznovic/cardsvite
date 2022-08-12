@@ -10,10 +10,10 @@ const Paella = (props: PropsType) => {
 
     let [ingredientList, setIngredientList] = useState<IngredientsType>(props.ingredients)
     let [newIngredientTitle, setNewIngredientTitle] = useState('')
-    const [newIngredientPrice, setNewIngredientPrice] = useState('')
+    const [newIngredientPrice, setNewIngredientPrice] = useState(0)
     const [toggle, setToggle] = useState(false)
 
-    const addNewIngredientTitle = () => {
+    const addNewIngredient = () => {
         let newIngredient = {id: v1(), ingredient: newIngredientTitle, price: 0}
         let newIngredientsList = [newIngredient, ...ingredientList]
         setIngredientList(newIngredientsList)
@@ -21,7 +21,7 @@ const Paella = (props: PropsType) => {
         let newIngredientCost: IngredientType = {id: v1(), ingredient: newIngredientTitle, price: +newIngredientPrice}
         let newIngredientsPriceList: IngredientsType = [newIngredientCost, ...ingredientList]
         setIngredientList(newIngredientsPriceList)
-        setNewIngredientPrice('')
+        setNewIngredientPrice(0)
     }
 
     const deleteIngredient = (id: string) => {
@@ -33,12 +33,12 @@ const Paella = (props: PropsType) => {
 
     let paellaIngredients = ingredientList.map(i => (<div className={s.ingredients}>
         <ul key={i.id} className={s.ingredient}>
-            {i.ingredient}
+            {i.ingredient} <span>Price: <span>&#8364;</span>{i.price}</span>
             <button className={s.floatRight} onClick={() => deleteIngredient(i.id)}>-</button>
         </ul>
     </div>))
 
-    return <div>
+    return <div className={s.element}>
         <img
             src='https://images.aws.nestle.recipes/resized/efc1f7093ccb8a17d90b4f33d203a732_image-1_1500x700_708_600.jpg'
             className={s.paella}/>
@@ -46,17 +46,17 @@ const Paella = (props: PropsType) => {
             <button onClick={() => setToggle(!toggle)} className={s.toggleButton}>Show ingredients</button>
             {toggle && (
                 <div>
-                    {paellaIngredients}
                     <Input setNewIngredientTitle={setNewIngredientTitle}
-                           addNewIngredientTitle={addNewIngredientTitle}
+                           addNewIngredient={addNewIngredient}
                            newIngredientTitle={newIngredientTitle}
                            setNewIngredientPrice={setNewIngredientPrice}
                            newIngredientPrice={+newIngredientPrice}
                     />
+                    {paellaIngredients}
                 </div>
             )}
         </div>
-        <div className={s.text}>Paella price: {Math.floor(paellaPrice * 100) / 100} euro</div>
+        <div className={s.text}>Paella price: <span>&#8364;</span>{Math.floor(paellaPrice * 100) / 100}</div>
     </div>
 }
 

@@ -3,7 +3,7 @@ import s from '../Apartment/Apartment.module.css'
 
 const Apartment = () => {
     return (
-        <div>
+        <div className={s.element}>
             <img src='https://media-cdn.tripadvisor.com/media/photo-m/1280/1d/15/db/63/caption.jpg'
                  className={s.apartment}/>
         </div>

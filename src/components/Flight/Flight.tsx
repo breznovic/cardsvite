@@ -20,8 +20,8 @@ const Flight = () => {
     })
 
     return (
-        <div>
-            <img src='http://hcchotels2019.webs3.mirai.es/files/vuelos-a-Barcelona.jpg'
+        <div className={s.element}>
+            <img src='https://static.onecms.io/wp-content/uploads/sites/13/2017/03/20/shutterstock_241896625.jpg'
                  className={s.flight}/>
         </div>
     )
