@@ -8,7 +8,7 @@ export type IngredientType = {
 
 export type IngredientsType = IngredientType[]
 
-let ingredients = [
+let ingredients: IngredientsType = [
     {id: v1(), ingredient: 'Onion', price: 0.14},
     {id: v1(), ingredient: 'Bell pepper', price: 1},
     {id: v1(), ingredient: 'Tomatoes', price: 0.39},

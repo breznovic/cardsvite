@@ -35,5 +35,6 @@
 .text {
     text-align: center;
     color: darkblue;
+    padding: 5px 0px 0px;
 }
 

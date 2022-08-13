@@ -1,12 +1,31 @@
+.elements {
+    display: flex;
+    color: darkblue;
+}
+
 .apartment {
-    max-height: 300px;
-    max-width: 300px;
+    max-height: 400px;
+    max-width: 339px;
 }
 
 .element {
     border: 1px solid black;
-    background-color: rgba(255,238,122,0.5);
+    background-color: rgba(255, 238, 122, 0.5);
     margin: 2px;
-    padding: 7px;
-    box-shadow: 5px 5px 5px rgba(71,255,45,0.3);
+    padding: 7px 7px 30px 7px;
+    box-shadow: 5px 5px 5px rgba(71, 255, 45, 0.3);
+}
+
+.toggleButton {
+    min-width: 340px;
+}
+
+.photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.rating {
+    color: darkblue;
 }

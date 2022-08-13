@@ -43,9 +43,10 @@ const Paella = (props: PropsType) => {
             src='https://images.aws.nestle.recipes/resized/efc1f7093ccb8a17d90b4f33d203a732_image-1_1500x700_708_600.jpg'
             className={s.paella}/>
         <div>
-            <button onClick={() => setToggle(!toggle)} className={s.toggleButton}>Show ingredients</button>
-            {toggle && (
-                <div>
+            <button onClick={() => setToggle(!toggle)} className={s.toggleButton}>
+                {!toggle ? 'Show ingredients' : 'Hide ingredients'}
+            </button>
+            {toggle && <div>
                     <Input setNewIngredientTitle={setNewIngredientTitle}
                            addNewIngredient={addNewIngredient}
                            newIngredientTitle={newIngredientTitle}
@@ -54,7 +55,7 @@ const Paella = (props: PropsType) => {
                     />
                     {paellaIngredients}
                 </div>
-            )}
+            }
         </div>
         <div className={s.text}>Paella price: <span>&#8364;</span>{Math.floor(paellaPrice * 100) / 100}</div>
     </div>
