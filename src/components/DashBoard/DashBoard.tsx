@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ImageGallery} from '../Photo/ImageGallery';
 import Paella from "../Paella/Paella";
 import s from '../DashBoard/DashBoard.module.css'
