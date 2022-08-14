@@ -6,7 +6,6 @@ import {Rating} from "@mui/material";
 const Apartment = () => {
 
     const [toggle, setToggle] = useState(false)
-    const [value, setValue] = useState<number | null>(0)
 
     let apartmentsForChoose = apartments.map(a => (
         <ul key={a.id}>
@@ -16,14 +15,7 @@ const Apartment = () => {
                 <div>Address: {a.address}</div>
                 <div>Space: {a.space}</div>
             </div>
-            <Rating
-                className={s.rating}
-                name="simple-controlled"
-                value={value}
-                onChange={(event, newValue) => {
-                    setValue(newValue)
-                }}
-            />
+            <Rating className={s.rating}/>
         </ul>
     ))
 

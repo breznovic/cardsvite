@@ -21,11 +21,13 @@
 }
 
 .photo {
-    width: 100px;
+    width: 121px;
     height: 100px;
     object-fit: cover;
 }
 
 .rating {
     color: darkblue;
+    background-color: rgba(13,255,178,0.51);
+    border: 1px solid black;
 }
