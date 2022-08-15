@@ -14,14 +14,21 @@ const Paella = (props: PropsType) => {
     const [toggle, setToggle] = useState(false)
 
     const addNewIngredient = () => {
-        let newIngredient = {id: v1(), ingredient: newIngredientTitle, price: 0}
-        let newIngredientsList = [newIngredient, ...ingredientList]
-        setIngredientList(newIngredientsList)
-        setNewIngredientTitle('')
-        let newIngredientCost: IngredientType = {id: v1(), ingredient: newIngredientTitle, price: +newIngredientPrice}
-        let newIngredientsPriceList: IngredientsType = [newIngredientCost, ...ingredientList]
-        setIngredientList(newIngredientsPriceList)
-        setNewIngredientPrice(0)
+
+        if (newIngredientTitle.trim() !== '') {
+            let newIngredient = {id: v1(), ingredient: newIngredientTitle, price: 0}
+            let newIngredientsList = [newIngredient, ...ingredientList]
+            setIngredientList(newIngredientsList)
+            setNewIngredientTitle('')
+            let newIngredientCost: IngredientType = {
+                id: v1(),
+                ingredient: newIngredientTitle,
+                price: +newIngredientPrice
+            }
+            let newIngredientsPriceList: IngredientsType = [newIngredientCost, ...ingredientList]
+            setIngredientList(newIngredientsPriceList)
+            setNewIngredientPrice(0)
+        }
     }
 
     const deleteIngredient = (id: string) => {
@@ -33,8 +40,9 @@ const Paella = (props: PropsType) => {
 
     let paellaIngredients = ingredientList.map(i => (<div className={s.ingredients}>
         <ul key={i.id} className={s.ingredient}>
-            {i.ingredient} <span>Price: <span>&#8364;</span>{i.price}</span>
-            <button className={s.floatRight} onClick={() => deleteIngredient(i.id)}>-</button>
+            <li>{i.ingredient}</li>
+            <span className={s.basis}>Price: <span>&#8364;</span>{i.price}</span>
+            <button className={s.buttonBasis} onClick={() => deleteIngredient(i.id)}>-</button>
         </ul>
     </div>))
 
@@ -47,14 +55,14 @@ const Paella = (props: PropsType) => {
                 {!toggle ? 'Show ingredients' : 'Hide ingredients'}
             </button>
             {toggle && <div>
-                    <Input setNewIngredientTitle={setNewIngredientTitle}
-                           addNewIngredient={addNewIngredient}
-                           newIngredientTitle={newIngredientTitle}
-                           setNewIngredientPrice={setNewIngredientPrice}
-                           newIngredientPrice={+newIngredientPrice}
-                    />
-                    {paellaIngredients}
-                </div>
+                <Input setNewIngredientTitle={setNewIngredientTitle}
+                       addNewIngredient={addNewIngredient}
+                       newIngredientTitle={newIngredientTitle}
+                       setNewIngredientPrice={setNewIngredientPrice}
+                       newIngredientPrice={+newIngredientPrice}
+                />
+                {paellaIngredients}
+            </div>
             }
         </div>
         <div className={s.text}>Paella price: <span>&#8364;</span>{Math.floor(paellaPrice * 100) / 100}</div>

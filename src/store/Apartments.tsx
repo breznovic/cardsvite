@@ -42,7 +42,13 @@ let apartments: ApartmentType = [
         space: 35,
         monthPrice: 1300
     },
-
+    {
+        id: v1(),
+        apartmentPhoto: 'https://housinganywhere.imgix.net/room/1435977/6532033c-196f-11e9-9503-42010af00008.jpg?ixlib=react-9.2.0&auto=format&fit=clip&w=1946',
+        address: 'Carrer de Pizarro',
+        space: 50,
+        monthPrice: 1500
+    },
 ]
 
 export default apartments

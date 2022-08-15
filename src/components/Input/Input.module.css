@@ -1,7 +1,5 @@
 .ingredient {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .buttonRight {
@@ -9,11 +7,16 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+    flex-basis: 10%;
+    margin: 10px;
 }
 
 .ingredients {
     margin-bottom: 1px;
     border: 1px solid black;
-    line-height: 25px;
+    border-top: none;
+    line-height: 35px;
     position: relative;
+    flex-basis: 100%;
 }
+

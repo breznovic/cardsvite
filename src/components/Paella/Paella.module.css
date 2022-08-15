@@ -18,18 +18,26 @@
 .ingredients {
     margin-bottom: 1px;
     border: 1px solid black;
-    line-height: 8px;
 }
 
 .ingredient {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     color: darkblue;
+    list-style: none;
 }
 
-.floatRight {
-    float: right;
+.ingredient > li {
+    flex-basis: 40%;
+}
+
+.buttonBasis {
+    flex-basis: 10%;
+    margin: 10px;
+}
+
+.basis {
+    flex-basis: 50%;
 }
 
 .text {
@@ -37,4 +45,3 @@
     color: darkblue;
     padding: 5px 0px 0px;
 }
-
