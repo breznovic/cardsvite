@@ -1,12 +1,12 @@
 import React from 'react'
 import DashBoard from './components/DashBoard/DashBoard';
-import {IngredientsType} from "./store/Ingredients";
+import {IngredientsType} from "./store/store";
 
-function App(props: {ingredients: IngredientsType }) {
+function App() {
 
     return (
         <div>
-           <DashBoard ingredients={props.ingredients}/>
+           <DashBoard ingredients={ingredients}/>
         </div>
     )
 }

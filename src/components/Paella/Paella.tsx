@@ -1,12 +1,16 @@
 import React, {useState} from 'react'
 import s from '../Paella/Paella.module.css'
-import {IngredientsType, IngredientType} from "../../store/Ingredients";
 import {v1} from "uuid";
 import Input from "../Input/Input";
+import {IngredientsType} from "../../store/store";
+import {useDispatch, useSelector} from "react-redux";
 
 type PropsType = { ingredients: IngredientsType }
 
 const Paella = (props: PropsType) => {
+
+    const dispatch = useDispatch()
+    const ingredients = useSelector(state => state.ingredients)
 
     let [ingredientList, setIngredientList] = useState<IngredientsType>(props.ingredients)
     let [newIngredientTitle, setNewIngredientTitle] = useState('')
