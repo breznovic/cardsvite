@@ -1,6 +1,7 @@
 import React from "react"
-import {createStore} from "redux";
-import {v1} from "uuid";
+import {v1} from "uuid"
+import {configureStore} from "@reduxjs/toolkit"
+import paellaReducer from '../store/slices/ingredientsSlice'
 
 export type IngredientType = {
     id: string
@@ -31,17 +32,8 @@ const appState = {
     ],
 }
 
-action = {type: '', payload: ''}
-
-const reducer = (state = appState, action) => {
-    switch (action.type) {
-        case 'ADD_INGREDIENT':
-            return {...state, ingredients: state.ingredients + action.payload}
-        case 'DEL_INGREDIENT':
-            return {...state, ingredients: state.ingredients - action.payload}
-        default:
-            return state
+export const store = configureStore({
+    reducer: {
+        paellaIngredients: paellaReducer
     }
-}
-
-export const store = createStore(reducer)
+})

@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 import s from '../Paella/Paella.module.css'
-import {v1} from "uuid";
-import Input from "../Input/Input";
-import {IngredientsType} from "../../store/store";
-import {useDispatch, useSelector} from "react-redux";
+import {v1} from "uuid"
+import Input from "../Input/Input"
+import {IngredientsType} from "../../store/store"
+import {useDispatch, useSelector} from "react-redux"
+import {addIngredient} from "../../store/slices/ingredientsSlice"
 
 type PropsType = { ingredients: IngredientsType }
 
