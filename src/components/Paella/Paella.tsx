@@ -2,16 +2,15 @@ import React, {useState} from 'react'
 import s from '../Paella/Paella.module.css'
 import {v1} from "uuid"
 import Input from "../Input/Input"
-import {IngredientsType} from "../../store/store"
+import {AppRootState, IngredientsType} from "../../store/store"
 import {useDispatch, useSelector} from "react-redux"
-import {addIngredient} from "../../store/slices/ingredientsSlice"
 
 type PropsType = { ingredients: IngredientsType }
 
 const Paella = (props: PropsType) => {
 
     const dispatch = useDispatch()
-    const ingredients = useSelector(state => state.ingredients)
+    const ingredients = useSelector<AppRootState, IngredientsType>((state) => state.ingredients)
 
     let [ingredientList, setIngredientList] = useState<IngredientsType>(props.ingredients)
     let [newIngredientTitle, setNewIngredientTitle] = useState('')
@@ -20,20 +19,20 @@ const Paella = (props: PropsType) => {
 
     const addNewIngredient = () => {
 
-        if (newIngredientTitle.trim() !== '') {
-            let newIngredient = {id: v1(), ingredient: newIngredientTitle, price: 0}
-            let newIngredientsList = [newIngredient, ...ingredientList]
-            setIngredientList(newIngredientsList)
-            setNewIngredientTitle('')
-            let newIngredientCost: IngredientType = {
-                id: v1(),
-                ingredient: newIngredientTitle,
-                price: +newIngredientPrice
-            }
-            let newIngredientsPriceList: IngredientsType = [newIngredientCost, ...ingredientList]
-            setIngredientList(newIngredientsPriceList)
-            setNewIngredientPrice(0)
-        }
+        // if (newIngredientTitle.trim() !== '') {
+        //     let newIngredient = {id: v1(), ingredient: newIngredientTitle, price: 0}
+        //     let newIngredientsList = [newIngredient, ...ingredientList]
+        //     setIngredientList(newIngredientsList)
+        //     setNewIngredientTitle('')
+        //     let newIngredientCost: IngredientType = {
+        //         id: v1(),
+        //         ingredient: newIngredientTitle,
+        //         price: +newIngredientPrice
+        //     }
+        //     let newIngredientsPriceList: IngredientsType = [newIngredientCost, ...ingredientList]
+        //     setIngredientList(newIngredientsPriceList)
+        //     setNewIngredientPrice(0)
+        // }
     }
 
     const deleteIngredient = (id: string) => {

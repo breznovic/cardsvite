@@ -1,7 +1,6 @@
 import React from "react"
-import {v1} from "uuid"
-import {configureStore} from "@reduxjs/toolkit"
-import paellaReducer from '../store/slices/ingredientsSlice'
+import {combineReducers, createStore} from "redux"
+import {ingredientsReducer} from "./ingredientsReducer"
 
 export type IngredientType = {
     id: string
@@ -11,29 +10,19 @@ export type IngredientType = {
 
 export type IngredientsType = IngredientType[]
 
-const appState = {
-    ingredients: [
-        {id: v1(), ingredient: 'Onion', price: 0.2},
-        {id: v1(), ingredient: 'Bell pepper', price: 1.01},
-        {id: v1(), ingredient: 'Tomatoes', price: 1},
-        {id: v1(), ingredient: 'Parsley', price: 0.3},
-        {id: v1(), ingredient: 'Frozen peas', price: 0.4},
-        {id: v1(), ingredient: 'Bay leaf', price: 0.1},
-        {id: v1(), ingredient: 'Paprika', price: 0.2},
-        {id: v1(), ingredient: 'Saffron', price: 0.5},
-        {id: v1(), ingredient: 'Salt', price: 0.2},
-        {id: v1(), ingredient: 'Pepper', price: 0.8},
-        {id: v1(), ingredient: 'Shrimp', price: 1.5},
-        {id: v1(), ingredient: 'Mussels', price: 1.1},
-        {id: v1(), ingredient: 'Calamari', price: 0.9},
-        {id: v1(), ingredient: 'Olive oil', price: 3},
-        {id: v1(), ingredient: 'White wine', price: 3.2},
-        {id: v1(), ingredient: 'Rice', price: 0.8},
-    ],
-}
+export type AppRootState = ReturnType<typeof rootReducer>
 
-export const store = configureStore({
-    reducer: {
-        paellaIngredients: paellaReducer
-    }
+const rootReducer = combineReducers({
+    ingredients: ingredientsReducer
 })
+
+export const store = createStore(rootReducer)
+
+
+
+
+
+
+
+
+
