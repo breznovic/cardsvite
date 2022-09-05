@@ -4,11 +4,9 @@ import {ingredientsReducer} from "./ingredientsReducer"
 
 export type IngredientType = {
     id: string
-    ingredient: string
+    title: string
     price: number
 }
-
-export type IngredientsType = IngredientType[]
 
 export type AppRootState = ReturnType<typeof rootReducer>
 

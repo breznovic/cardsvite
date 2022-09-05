@@ -1,6 +1,6 @@
 import {v1} from 'uuid'
 
-export type ApartmentsType = {
+export type ApartmentType = {
     id: string
     apartmentPhoto: string
     address: string
@@ -8,9 +8,7 @@ export type ApartmentsType = {
     monthPrice: number
 }
 
-export type ApartmentType = ApartmentsType[]
-
-let apartments: ApartmentType = [
+let apartments: ApartmentType[] = [
     {
         id: v1(),
         apartmentPhoto: 'https://housinganywhere.imgix.net/room/1843362/4bd18135-808f-48f9-8d21-3f92ac314475.jpg?ixlib=react-9.2.0&auto=format&fit=clip&w=1946',

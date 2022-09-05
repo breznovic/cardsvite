@@ -11,7 +11,7 @@ type PropsType = {
 
 const Input = (props: PropsType) => {
     return <div>
-        <div className={s.ingredient}>
+        <div className={s.title}>
             <div className={s.ingredients}>
                 <input
                     value={props.newIngredientTitle}
