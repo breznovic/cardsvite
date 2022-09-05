@@ -1,5 +1,5 @@
 import s from './Input.module.css'
-import React, {ChangeEvent, KeyboardEvent} from "react";
+import React, {ChangeEvent, KeyboardEvent} from "react"
 
 type PropsType = {
     addNewIngredient: () => void

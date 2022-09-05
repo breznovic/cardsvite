@@ -1,13 +1,24 @@
 import React from "react"
-import {IngredientsType, IngredientType} from "./store"
-import {v1} from "uuid";
+import {IngredientsType} from "./store"
+import {v1} from "uuid"
 
 type AddIngredientType = {
     type: 'ADD-INGREDIENT'
-    newIngredientTitle: string
+    ingredient: string
 }
 
-type ActionsType = AddIngredientType
+type AddIngredientPriceType = {
+    type: 'ADD-INGREDIENT-PRICE'
+    ingredient: string
+    price: number
+}
+
+type DeleteIngredientType = {
+    type: 'DELETE-INGREDIENT'
+    id: string
+}
+
+type ActionsType = AddIngredientType | AddIngredientPriceType | DeleteIngredientType
 
 const initialState: IngredientsType = [
     {id: v1(), ingredient: 'Onion', price: 0.2},
@@ -31,28 +42,36 @@ const initialState: IngredientsType = [
 export const ingredientsReducer = (state: IngredientsType = initialState, action: ActionsType): IngredientsType => {
     switch (action.type) {
         case 'ADD-INGREDIENT': {
-            if (newIngredientTitle.trim() !== '') {
-                let newIngredient = {id: v1(), ingredient: newIngredientTitle, price: 0}
-                let newIngredientsList = [newIngredient, ...ingredientList]
-                setIngredientList(newIngredientsList)
-                setNewIngredientTitle('')
-                let newIngredientCost: IngredientType = {
-                    id: v1(),
-                    ingredient: newIngredientTitle,
-                    price: +newIngredientPrice
-                }
-                let newIngredientsPriceList: IngredientsType = [newIngredientCost, ...ingredientList]
-                setIngredientList(newIngredientsPriceList)
-                setNewIngredientPrice(0)
-            }
+            const stateCopy = [...state]
+            const newIngredient = {id: v1(), ingredient: action.ingredient, price: 0}
+            return [newIngredient, ...stateCopy]
+        }
+        case 'ADD-INGREDIENT-PRICE': {
+            const stateCopy = [...state]
+            const newIngredientCost = {id: v1(), ingredient: newIngredient, price: +newIngredientPrice}
+            return [newIngredientCost, ...stateCopy]
+        }
+        case 'DELETE-INGREDIENT': {
+            let stateCopy = {...state}
+            const filteredIngredient = initialState.filter(i => i.id !== id)
+            stateCopy = filteredIngredient
+            return stateCopy
         }
         default:
             return state
     }
 }
 
-export const addIngredientAC = (newIngredientTitle: string): AddIngredientType => {
-    return {type: "ADD-INGREDIENT", newIngredientTitle}
+export const addIngredientAC = (ingredient: string): AddIngredientType => {
+    return {type: "ADD-INGREDIENT", ingredient}
+}
+
+export const addIngredientPriceAC = (ingredient: string, price: number): AddIngredientPriceType => {
+    return {type: "ADD-INGREDIENT-PRICE", ingredient, price}
+}
+
+export const deleteIngredientAC = (id: string): DeleteIngredientType => {
+    return {type: "DELETE-INGREDIENT", id}
 }
 
 

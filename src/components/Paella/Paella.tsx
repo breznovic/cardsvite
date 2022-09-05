@@ -1,23 +1,29 @@
 import React, {useState} from 'react'
 import s from '../Paella/Paella.module.css'
-import {v1} from "uuid"
 import Input from "../Input/Input"
 import {AppRootState, IngredientsType} from "../../store/store"
 import {useDispatch, useSelector} from "react-redux"
+import {addIngredientAC, addIngredientPriceAC, deleteIngredientAC} from "../../store/ingredientsReducer"
 
-type PropsType = { ingredients: IngredientsType }
-
-const Paella = (props: PropsType) => {
+const Paella = () => {
 
     const dispatch = useDispatch()
     const ingredients = useSelector<AppRootState, IngredientsType>((state) => state.ingredients)
 
-    let [ingredientList, setIngredientList] = useState<IngredientsType>(props.ingredients)
+    let [ingredientList, setIngredientList] = useState<IngredientsType>(ingredients)
     let [newIngredientTitle, setNewIngredientTitle] = useState('')
     const [newIngredientPrice, setNewIngredientPrice] = useState(0)
     const [toggle, setToggle] = useState(false)
 
     const addNewIngredient = () => {
+
+        if (newIngredientTitle.trim() !== '') {
+            dispatch(addIngredientAC(ingredient))
+            setNewIngredientTitle('')
+            dispatch(addIngredientPriceAC(ingredient: string, price: number))
+            let newIngredientsPriceList = [newIngredientPrice, ...ingredientList]
+                setIngredientList(newIngredientsPriceList)
+                setNewIngredientPrice(0)
 
         // if (newIngredientTitle.trim() !== '') {
         //     let newIngredient = {id: v1(), ingredient: newIngredientTitle, price: 0}
@@ -35,18 +41,20 @@ const Paella = (props: PropsType) => {
         // }
     }
 
-    const deleteIngredient = (id: string) => {
-        let filteredIngredient = ingredientList.filter(i => i.id !== id)
-        setIngredientList(filteredIngredient)
-    }
+    // const deleteIngredient = (id: string) => {
+    //     let filteredIngredient = ingredients.filter(i => i.id !== id)
+    //     setIngredientList(filteredIngredient)
+    // }
 
-    let paellaPrice = ingredientList.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
+        const deleteIngredient = dispatch(deleteIngredientAC(id))
 
-    let paellaIngredients = ingredientList.map(i => (<div className={s.ingredients}>
+    let paellaPrice = ingredients.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
+
+    let paellaIngredients = ingredients.map(i => (<div className={s.ingredients}>
         <ul key={i.id} className={s.ingredient}>
             <li>{i.ingredient}</li>
             <span className={s.basis}>Price: <span>&#8364;</span>{i.price}</span>
-            <button className={s.buttonBasis} onClick={() => deleteIngredient(i.id)}>-</button>
+            <button className={s.buttonBasis} onClick={() => deleteIngredient}>-</button>
         </ul>
     </div>))
 
