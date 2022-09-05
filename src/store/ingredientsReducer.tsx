@@ -48,7 +48,7 @@ export const ingredientsReducer = (state: IngredientsType = initialState, action
         }
         case 'ADD-INGREDIENT-PRICE': {
             const stateCopy = [...state]
-            const newIngredientCost = {id: v1(), ingredient: newIngredient, price: +newIngredientPrice}
+            const newIngredientCost = {id: v1(), ingredient: newIngredient, price: action.price}
             return [newIngredientCost, ...stateCopy]
         }
         case 'DELETE-INGREDIENT': {
