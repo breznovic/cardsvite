@@ -1,6 +1,6 @@
 import React from "react"
 import {v1} from "uuid"
-import {IngredientType} from "./store";
+import {IngredientType} from "./store"
 
 
 type AddIngredientType = {
