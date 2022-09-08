@@ -2,20 +2,20 @@ import React, {useState} from 'react'
 import s from '../Paella/Paella.module.css'
 import Input from "../Input/Input"
 import {useDispatch, useSelector} from "react-redux"
-import {addIngredientAC, deleteIngredientAC} from "../../store/ingredientsReducer"
-import {AppRootState, IngredientType} from "../../store/store"
+import {addIngredientAC, deleteIngredientAC, IngredientsType} from "../../store/ingredientsReducer"
+import {AppRootState} from "../../store/store"
 
 const Paella = () => {
 
     const dispatch = useDispatch()
-    const ingredients = useSelector<AppRootState, IngredientType[]>(state => state.ingredients)
+    const ingredients = useSelector<AppRootState, IngredientsType>(state => state.ingredients)
 
     let [newIngredientTitle, setNewIngredientTitle] = useState('')
     const [newIngredientPrice, setNewIngredientPrice] = useState(0)
     const [toggle, setToggle] = useState(false)
 
     const addNewIngredient = (title: string, price: number) => {
-
+        console.log(price, title)
         if (newIngredientTitle.trim() !== '') {
             dispatch(addIngredientAC(title, price))
             setNewIngredientTitle('')
@@ -27,13 +27,14 @@ const Paella = () => {
         dispatch(deleteIngredientAC(id))
     }
 
-    let paellaPrice = ingredients.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
+    let paellaPrice = ingredients.ingredients.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
 
-    let paellaIngredients = ingredients.map(i => (<div className={s.ingredients}>
+    let paellaIngredients = ingredients.ingredients.map(i => (<div className={s.ingredients}>
         <ul key={i.id} className={s.title}>
             <li className={s.ingredient}>{i.title}</li>
             <span className={s.basis}>Price: <span>&#8364;</span>{i.price}</span>
-            <button className={s.buttonBasis} onClick={() => deleteIngredient}>-</button>
+            <button className={s.buttonBasis} onClick={() => deleteIngredient(i.id)
+            }>-</button>
         </ul>
     </div>))
 

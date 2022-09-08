@@ -1,7 +1,11 @@
 import React from "react"
 import {v1} from "uuid"
-import {IngredientType} from "./store"
 
+export type IngredientType = {
+    id: string
+    title: string
+    price: number
+}
 
 type AddIngredientType = {
     type: 'ADD-INGREDIENT'
@@ -14,35 +18,47 @@ type DeleteIngredientType = {
     id: string
 }
 
+export type IngredientsType = {
+    ingredients: IngredientType[]
+}
+
 type ActionsType = AddIngredientType | DeleteIngredientType
 
-const initialState: IngredientType[] = [
-    {id: v1(), title: 'Onion', price: 0.2},
-    {id: v1(), title: 'Bell pepper', price: 1.01},
-    {id: v1(), title: 'Tomatoes', price: 1},
-    {id: v1(), title: 'Parsley', price: 0.3},
-    {id: v1(), title: 'Frozen peas', price: 0.4},
-    {id: v1(), title: 'Bay leaf', price: 0.1},
-    {id: v1(), title: 'Paprika', price: 0.2},
-    {id: v1(), title: 'Saffron', price: 0.5},
-    {id: v1(), title: 'Salt', price: 0.2},
-    {id: v1(), title: 'Pepper', price: 0.8},
-    {id: v1(), title: 'Shrimp', price: 1.5},
-    {id: v1(), title: 'Mussels', price: 1.1},
-    {id: v1(), title: 'Calamari', price: 0.9},
-    {id: v1(), title: 'Olive oil', price: 3},
-    {id: v1(), title: 'White wine', price: 3.2},
-    {id: v1(), title: 'Rice', price: 0.8},
-]
+const initialState: IngredientsType = {
+    ingredients: [
+        {id: v1(), title: 'Onion', price: 0.2},
+        {id: v1(), title: 'Bell pepper', price: 1.01},
+        {id: v1(), title: 'Tomatoes', price: 1},
+        {id: v1(), title: 'Parsley', price: 0.3},
+        {id: v1(), title: 'Frozen peas', price: 0.4},
+        {id: v1(), title: 'Bay leaf', price: 0.1},
+        {id: v1(), title: 'Paprika', price: 0.2},
+        {id: v1(), title: 'Saffron', price: 0.5},
+        {id: v1(), title: 'Salt', price: 0.2},
+        {id: v1(), title: 'Pepper', price: 0.8},
+        {id: v1(), title: 'Shrimp', price: 1.5},
+        {id: v1(), title: 'Mussels', price: 1.1},
+        {id: v1(), title: 'Calamari', price: 0.9},
+        {id: v1(), title: 'Olive oil', price: 3},
+        {id: v1(), title: 'White wine', price: 3.2},
+        {id: v1(), title: 'Rice', price: 0.8},
+    ]
+}
 
-export const ingredientsReducer = (state: IngredientType[] = initialState, action: ActionsType): IngredientType[] => {
+export const ingredientsReducer = (state: IngredientsType = initialState, action: ActionsType): IngredientsType => {
     switch (action.type) {
         case 'ADD-INGREDIENT': {
-            return [{id: v1(), title: action.title, price: action.price}, ...state]
+            const newIngredient: IngredientType = {id: v1(), title: action.title, price: action.price}
+            return {
+                ...state, ingredients: [newIngredient, ...state.ingredients]
+            }
         }
 
         case 'DELETE-INGREDIENT': {
-            return initialState.filter(i => i.id !== action.id)
+            const newIngredientList: IngredientType[] = state.ingredients.filter(i => i.id !== action.id)
+            const copyState = {...state}
+            copyState.ingredients = newIngredientList
+            return copyState
         }
         default:
             return state
@@ -50,6 +66,7 @@ export const ingredientsReducer = (state: IngredientType[] = initialState, actio
 }
 
 export const addIngredientAC = (title: string, price: number): AddIngredientType => {
+    console.log('bla')
     return {type: "ADD-INGREDIENT", title, price}
 }
 
