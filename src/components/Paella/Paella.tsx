@@ -2,8 +2,14 @@ import React, {useState} from 'react'
 import s from '../Paella/Paella.module.css'
 import Input from "../Input/Input"
 import {useDispatch, useSelector} from "react-redux"
-import {addIngredientAC, deleteIngredientAC, IngredientsType} from "../../store/ingredientsReducer"
+import {
+    addIngredientAC,
+    changeIngredientTitleAC,
+    deleteIngredientAC,
+    IngredientsType
+} from "../../store/ingredientsReducer"
 import {AppRootState} from "../../store/store"
+import {Span} from "../Span/Span";
 
 const Paella = () => {
 
@@ -27,11 +33,14 @@ const Paella = () => {
         dispatch(deleteIngredientAC(id))
     }
 
+    const changeIngredientTitle = (newTitle: string, id: string) =>
+        dispatch(changeIngredientTitleAC(newTitle, id))
+
     let paellaPrice = ingredients.ingredients.map(i => i.price).reduce((prev, curr) => prev + curr, 0)
 
     let paellaIngredients = ingredients.ingredients.map(i => (<div className={s.ingredients}>
         <ul key={i.id} className={s.title}>
-            <li className={s.ingredient}>{i.title}</li>
+            <li className={s.ingredient}><Span title={i.title} onChange={changeIngredientTitle}></Span></li>
             <span className={s.basis}>Price: <span>&#8364;</span>{i.price}</span>
             <button className={s.buttonBasis} onClick={() => deleteIngredient(i.id)
             }>-</button>

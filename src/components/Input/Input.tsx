@@ -1,5 +1,5 @@
 import s from './Input.module.css'
-import React, {ChangeEvent, KeyboardEvent} from "react"
+import React, {ChangeEvent, KeyboardEvent, useState} from "react"
 
 type PropsType = {
     addNewIngredient: (title: string, price: number) => void
@@ -18,7 +18,6 @@ const Input = (props: PropsType) => {
                     value={props.newIngredientTitle}
                     placeholder={'Add your ingredient'}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => {
-
                         props.setNewIngredientTitle(e.currentTarget.value)
                     }}
                     onKeyPress={(e: KeyboardEvent<HTMLInputElement>) => {

@@ -18,11 +18,17 @@ type DeleteIngredientType = {
     id: string
 }
 
+type ChangeIngredientTitleType = {
+    type: 'CHANGE-ING-TITLE'
+    id: string
+    newTitle: string
+}
+
 export type IngredientsType = {
     ingredients: IngredientType[]
 }
 
-type ActionsType = AddIngredientType | DeleteIngredientType
+type ActionsType = AddIngredientType | DeleteIngredientType | ChangeIngredientTitleType
 
 const initialState: IngredientsType = {
     ingredients: [
@@ -60,18 +66,31 @@ export const ingredientsReducer = (state: IngredientsType = initialState, action
             copyState.ingredients = newIngredientList
             return copyState
         }
+
+        case 'CHANGE-ING-TITLE': {
+            const newIngredientList: IngredientType[] = state.ingredients.map
+            (i => i.id === action.id ?
+                {...i, title: action.newTitle} : i)
+            const copyState = {...state}
+            copyState.ingredients = newIngredientList
+            return copyState
+        }
+
         default:
             return state
     }
 }
 
 export const addIngredientAC = (title: string, price: number): AddIngredientType => {
-    console.log('bla')
     return {type: "ADD-INGREDIENT", title, price}
 }
 
 export const deleteIngredientAC = (id: string): DeleteIngredientType => {
     return {type: "DELETE-INGREDIENT", id}
+}
+
+export const changeIngredientTitleAC = (newTitle: string, id: string): ChangeIngredientTitleType => {
+    return {type: 'CHANGE-ING-TITLE', newTitle, id}
 }
 
 
