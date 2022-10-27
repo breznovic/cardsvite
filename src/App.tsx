@@ -1,12 +1,13 @@
-import React from 'react'
-import s from "./App.module.css"
-
+import PostsList from "./features/posts/PostsList"
+import AddPostForm from "./features/posts/AddPostForm"
 
 function App() {
-
-    return <div>
-
-        </div>
+    return (
+        <main className="App">
+            <AddPostForm />
+            <PostsList />
+        </main>
+    )
 }
 
-export default App
+export default App;
