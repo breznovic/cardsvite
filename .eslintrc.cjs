@@ -1,5 +1,5 @@
 module.exports = {
-    extends: '@it-incubator/eslint-config',
+    extends: '@it-incubator/eslint-config', 
     overrides: [
       {
         files: ['**/*.stories.tsx'],
