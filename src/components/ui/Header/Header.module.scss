@@ -1,0 +1,16 @@
+.layout {
+  width: 1280px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.header {
+  border-bottom: 1px solid var(--Dark-500, #333);
+  background: var(--Dark-700, #171717);
+}
+
+.logo {
+  width: 156.482px;
+  height: 36px;
+  flex-shrink: 0;
+}

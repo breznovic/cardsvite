@@ -1,10 +1,9 @@
-import { Button } from './components/ui/button'
+import Header from "./components/ui/Header/Header";
 
 export function App() {
   return (
     <div>
-      <Button>Start</Button>
-      <Button>End</Button>
+      <Header/>
     </div>
   )
 }
