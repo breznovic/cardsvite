@@ -1,5 +1,6 @@
 import Logo from '@/assets/images/Logo'
 import s from './Header.module.scss'
+import { Button } from '../button'
 
 const Header = () => {
   return (
@@ -8,6 +9,7 @@ const Header = () => {
         <div className={s.logo}>
           <Logo />
         </div>
+        <Button variant="secondary" className={s.button}>Sign in</Button>
       </div>
     </div>
   )

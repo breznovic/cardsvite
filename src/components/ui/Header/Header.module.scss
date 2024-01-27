@@ -7,10 +7,24 @@
 .header {
   border-bottom: 1px solid var(--Dark-500, #333);
   background: var(--Dark-700, #171717);
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo {
   width: 156.482px;
   height: 36px;
   flex-shrink: 0;
+  margin: 12px 0px 12px 136px;
+}
+
+.button {
+  display: flex;
+  height: 36px;
+  padding: 6px 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  margin: 12px 137.5px 12px 0px;
 }
