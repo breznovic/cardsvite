@@ -1,17 +1,17 @@
-import { Meta, Story } from '@storybook/react';
-import Header from './Header';
+import type { Meta, StoryObj } from '@storybook/react'
 
-const meta: Meta = {
-  title: 'Components/Header',
+import Header from '../Header/Header'
+
+const meta: Meta<typeof Header> = {
   component: Header,
-};
+}
 
-export default meta;
+export default meta
+type Story = StoryObj<typeof Header>
 
-export const Default: Story = () => <Header />;
-
-export const WithButton: Story = () => (
-  <Header>
-    <Button variant="primary">Sign in</Button>
-  </Header>
-);
+export const Primary: Story = {
+  args: {
+    primary: true,
+    label: 'Header',
+  },
+}
