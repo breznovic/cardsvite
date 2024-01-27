@@ -9,7 +9,9 @@ const Header = () => {
         <div className={s.logo}>
           <Logo />
         </div>
-        <Button variant="secondary" className={s.button}>Sign in</Button>
+        <Button variant="secondary" className={s.button}>
+          Sign in
+        </Button>
       </div>
     </div>
   )
