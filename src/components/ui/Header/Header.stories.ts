@@ -11,7 +11,7 @@ type Story = StoryObj<typeof Header>
 
 export const Primary: Story = {
   args: {
-    primary: true,
     label: 'Header',
+    primary: true,
   },
 }
