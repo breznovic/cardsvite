@@ -3,13 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Input } from './input'
 
 const meta = {
-  title: 'Components/Input',
-  component: Input,
-  tags: ['autodocs'],
   argTypes: {
     variant: {
       options: ['primary', 'withIcon', 'search'],
-      control: { type: 'radio' },
     },
   },
 } satisfies Meta<typeof Input>
