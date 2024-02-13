@@ -2,7 +2,7 @@ import Logo from '@/assets/images/Logo'
 
 import s from './Header.module.scss'
 
-import { Button } from '../button'
+import { Button } from '../Button'
 
 const Header = () => {
   return (
