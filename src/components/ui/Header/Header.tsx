@@ -1,5 +1,7 @@
 import Logo from '@/assets/images/Logo'
+
 import s from './Header.module.scss'
+
 import { Button } from '../button'
 
 const Header = () => {
@@ -9,7 +11,7 @@ const Header = () => {
         <div className={s.logo}>
           <Logo />
         </div>
-        <Button variant="secondary" className={s.button}>
+        <Button className={s.button} variant={'secondary'}>
           Sign in
         </Button>
       </div>
