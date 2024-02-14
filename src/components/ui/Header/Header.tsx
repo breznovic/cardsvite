@@ -1,6 +1,6 @@
 import s from './Header.module.scss'
 import { Button } from '../Button/button'
-import Logo from '@/assets/images/Logo/Logo'
+import Logo from '@/assets/images/Header/Logo'
 
 const Header = () => {
   return (
