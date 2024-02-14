@@ -1,6 +1,6 @@
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import * as LabelRadix from '@radix-ui/react-label'
-import s from './checkbox.module.scss'
+import s from './CheckBox.module.scss'
 import checkboxChecked from '../../../assets/images/CheckBox/checked.svg'
 import checkboxDisabledChecked from '../../../assets/images/CheckBox/disableChecked.svg'
 import { Typography } from '../Typography'
