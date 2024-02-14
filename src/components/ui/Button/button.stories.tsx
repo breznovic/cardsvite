@@ -1,12 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import LogoutIcon from '@/assets/images/LogoutIcon'
+
 import { Button } from './'
 
 const meta = {
   argTypes: {
     variant: {
       control: { type: 'radio' },
-      options: ['primary', 'secondary', 'tertiary', 'link'],
+      options: ['primary', 'secondary', 'link'],
     },
   },
   component: Button,
@@ -15,12 +17,23 @@ const meta = {
 } satisfies Meta<typeof Button>
 
 export default meta
-
 type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
     children: 'Primary Button',
+    disabled: false,
+    variant: 'primary',
+  },
+}
+
+export const PrimaryWithIcon: Story = {
+  args: {
+    children: (
+      <>
+        <LogoutIcon /> Button Primary
+      </>
+    ),
     disabled: false,
     variant: 'primary',
   },
@@ -33,18 +46,16 @@ export const Secondary: Story = {
     variant: 'secondary',
   },
 }
-export const Tertiary: Story = {
+
+export const SecondaryWithIcon: Story = {
   args: {
-    children: 'Tertiary Button',
+    children: (
+      <>
+        <LogoutIcon /> Button
+      </>
+    ),
     disabled: false,
-    variant: 'tertiary',
-  },
-}
-export const Link: Story = {
-  args: {
-    children: 'Tertiary Button',
-    disabled: false,
-    variant: 'link',
+    variant: 'secondary',
   },
 }
 
@@ -60,7 +71,9 @@ export const FullWidth: Story = {
 export const AsLink: Story = {
   args: {
     as: 'a',
-    children: 'Link that looks like a button',
-    variant: 'primary',
+    children: 'Link button',
+    disabled: false,
+    href: 'https://www.google.com',
+    variant: 'link',
   },
 }
