@@ -3,6 +3,7 @@ import * as LabelRadix from '@radix-ui/react-label'
 import s from './checkbox.module.scss'
 import checkboxChecked from '../../../assets/images/CheckBox/checked.svg'
 import checkboxDisabledChecked from '../../../assets/images/CheckBox/disableChecked.svg'
+import { Typography } from '../Typography'
 
 export type CheckBoxProps = {
   checked: boolean
@@ -39,8 +40,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
           </CheckboxRadix.Indicator>
         </CheckboxRadix.Root>
       </div>
-      <div>{label}</div>
-      {/* <Typography variant="body2">{label}</Typography>  Add Typography */}
+      <Typography variant="body2">{label}</Typography>
     </LabelRadix.Root>
   )
 }
