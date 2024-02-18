@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef } from 'react'
+
 import * as SliderRadix from '@radix-ui/react-slider'
 
 import s from './Slider.module.scss'
