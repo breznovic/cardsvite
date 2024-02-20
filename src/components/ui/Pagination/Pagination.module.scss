@@ -1,0 +1,33 @@
+.button {
+  all: unset;
+  cursor: pointer;
+  padding: 0px 8px;
+  &:hover {
+    border-radius: 2px;
+    background: var(--Dark-500);
+  }
+  &:disabled {
+    cursor: default;
+    color: var(--Dark-100);
+    background: none;
+  }
+  &:focus {
+    background: none;
+  }
+}
+
+.container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  .pages {
+    display: flex;
+    gap: 12px;
+    .active {
+      background-color: white;
+      color: black;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
