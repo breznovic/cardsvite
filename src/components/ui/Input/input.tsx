@@ -1,9 +1,9 @@
 import { ReactNode, useState } from 'react'
 
-import CloseIcon from '@/assets/images/CloseIcon'
-import EyeOffOutlineIcon from '@/assets/images/EyeOffOutlineIcon'
-import EyeOutlineIcon from '@/assets/images/EyeOutlineIcon'
-import SearchIcon from '@/assets/images/SearchIcon'
+import CloseIcon from '@/assets/images/Input/CloseIcon'
+import EyeOffOutlineIcon from '@/assets/images/Input/EyeOffOutlineIcon'
+import EyeOutlineIcon from '@/assets/images/Input/EyeOutlineIcon'
+import SearchIcon from '@/assets/images/Input/SearchIcon'
 import { Button } from '@/components/ui/Button'
 
 import s from './input.module.scss'
@@ -15,7 +15,7 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string
 }
 
-const Input = ({
+export const Input = ({
   className,
   disabled,
   fullWidth,
@@ -75,5 +75,3 @@ const Input = ({
     </div>
   )
 }
-
-export default Input
