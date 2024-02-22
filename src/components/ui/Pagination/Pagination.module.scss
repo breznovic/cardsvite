@@ -1,33 +1,66 @@
-.button {
-  all: unset;
-  cursor: pointer;
-  padding: 0px 8px;
-  &:hover {
-    border-radius: 2px;
-    background: var(--Dark-500);
-  }
-  &:disabled {
-    cursor: default;
-    color: var(--Dark-100);
-    background: none;
-  }
-  &:focus {
-    background: none;
-  }
+.root {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .container {
   display: flex;
+  gap: 17px;
+  align-items: center;
+  list-style-type: none;
+}
+
+.item {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--color-light-100);
+  border-radius: 2px;
+
+  &:disabled {
+    cursor: initial;
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-info-900);
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-dark-100);
+  }
+
+  &.selected {
+    color: var(--color-dark-900);
+    background-color: var(--color-light-100);
+  }
+}
+
+.dots {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--color-light-100);
+}
+
+.icon {
+  &:disabled {
+    color: var(--color-dark-100) !important;
+  }
+}
+
+.selectBox {
+  display: flex;
   gap: 12px;
   align-items: center;
-  .pages {
-    display: flex;
-    gap: 12px;
-    .active {
-      background-color: white;
-      color: black;
-      display: flex;
-      justify-content: center;
-    }
-  }
+  white-space: nowrap;
 }

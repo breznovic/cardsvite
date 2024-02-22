@@ -3,8 +3,8 @@ import CloseIcon from '@/assets/images/CloseIcon'
 import EyeOffOutlineIcon from '@/assets/images/EyeOffOutlineIcon'
 import EyeOutlineIcon from '@/assets/images/EyeOutlineIcon'
 import SearchIcon from '@/assets/images/SearchIcon'
-import { Button } from '@/components/ui/Button'
 import s from './input.module.scss'
+import { Button } from '../Button/button'
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   fullWidth?: boolean

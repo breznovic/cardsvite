@@ -1,3 +1,5 @@
+import { Modal } from "./components/ui/Modal/Modal";
+
 export function App() {
-  return <div>Test</div>
+  return <div><Modal title={""} trigger={undefined}/></div>
 }
