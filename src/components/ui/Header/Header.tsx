@@ -1,5 +1,7 @@
-import { Button } from '../Button/button'
+import { Button } from '@/components/ui/button/button'
+
 import s from './Header.module.scss'
+
 import Logo from '../../../assets/images/Header/Logo'
 
 type HeaderProps = {

@@ -1,13 +1,13 @@
-import { useState } from 'react'
-
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Slider } from './'
+import { useState } from 'react'
+
+import { Slider } from './Slider'
 
 const meta = {
-  title: 'Components/Slider',
   component: Slider,
   tags: ['autodocs'],
+  title: 'Components/Slider',
 } satisfies Meta<typeof Slider>
 
 export default meta
@@ -23,10 +23,10 @@ export const Default: Story = {
     return (
       <>
         <Slider
-          value={value}
           onValueChange={prev => {
             setValue(prev)
           }}
+          value={value}
         />
       </>
     )
