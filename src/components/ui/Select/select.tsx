@@ -1,5 +1,4 @@
-import React, { ComponentPropsWithoutRef, ReactNode } from 'react'
-
+import { ComponentPropsWithoutRef, ReactNode } from 'react'
 import ArrowDownIcon from '@/assets/images/Select/ArrowDownIcon'
 import { SelectItem } from '@/components/ui/Select/selectItem/selectItem'
 import * as SelectRadix from '@radix-ui/react-select'

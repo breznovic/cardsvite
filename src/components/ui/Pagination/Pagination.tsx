@@ -1,165 +1,179 @@
-import { FC } from 'react'
+import { useEffect } from 'react'
 import s from './Pagination.module.scss'
-import { usePagination } from './usePagination'
-import { Typography } from '../Typography'
+import { OptionType, Select } from '../Select/select'
+import { Typography } from '../Typography/Typography'
 
-type PaginationConditionals =
-  | {
-      perPage?: null
-      perPageOptions?: never
-      onPerPageChange?: never
-    }
-  | {
-      perPage: number
-      perPageOptions: number[]
-      onPerPageChange: (itemPerPage: number) => void
-    }
-
-export type PaginationProps = {
-  count: number
+export type Props = {
+  className?: string
+  getPage: (pageNumber: number, pageSize: number) => void
+  limit: number
   page: number
-  onChange: (page: number) => void
-  siblings?: number
-  perPage?: number
-  perPageOptions?: number[]
-  onPerPageChange?: (itemPerPage: number) => void
-} & PaginationConditionals
+  options?: OptionType[]
+  setLimit: (itemsPerPage: number) => void
+  setPage: (currentPage: number) => void
+  totalPages: number
+}
 
-export const Pagination: FC<PaginationProps> = ({
-  onChange,
-  count,
+const hahdlePageChange = (
+  value: number | string,
+  page: number,
+  setPage: (page: number) => void,
+  totalPage: number
+) => {
+  if (value === '&laquo;' || value === '... ') {
+    setPage(1)
+  } else if (value === '&lsaquo;') {
+    if (page !== 1) {
+      setPage(page - 1)
+    }
+  } else if (value === '&rsaquo;') {
+    if (page !== totalPage) {
+      setPage(page + 1)
+    }
+  } else if (value === '&raquo;' || value === ' ...') {
+    setPage(totalPage)
+  } else {
+    if (typeof value === 'number') {
+      setPage(value)
+    }
+  }
+}
+
+const returnPaginationRange = (totalPage: number, page: number, siblings: number) => {
+  const totalPageNoInArray = 7 + siblings
+
+  if (totalPageNoInArray >= totalPage) {
+    return range(1, totalPage + 1)
+  }
+
+  const leftSiblingsIndex = Math.max(page - siblings, 1)
+  const rightSiblingsIndex = Math.min(page + siblings, totalPage)
+
+  const showLeftDots = leftSiblingsIndex > 2
+  const showRightDots = rightSiblingsIndex < totalPage - 2
+
+  if (!showLeftDots && showRightDots) {
+    const leftItemCount = 3 + 2 * siblings
+    const leftRange = range(1, leftItemCount + 1)
+
+    return [...leftRange, ' ...', totalPage]
+  } else if (showLeftDots && !showRightDots) {
+    const rightItemCount = 3 + 2 * siblings
+    const rightRange = range(totalPage - rightItemCount + 1, totalPage + 1)
+
+    return [1, '... ', ...rightRange]
+  } else {
+    const middleRange = range(leftSiblingsIndex, rightSiblingsIndex + 1)
+
+    return [1, '... ', ...middleRange, ' ...', totalPage]
+  }
+}
+
+function range(start: number, end: number) {
+  if (end === undefined) {
+    end = start
+    start = 0
+  }
+
+  const result = []
+  let current = start
+
+  while (current < end) {
+    result.push(current)
+    current += 1
+  }
+
+  return result
+}
+
+export const Pagination = ({
+  className,
+  getPage,
+  limit,
   page,
-  perPage = null,
-  perPageOptions,
-  onPerPageChange,
-  siblings,
-}) => {
-  const {
-    paginationRange,
-    isLastPage,
-    isFirstPage,
-    handlePreviousPageClicked,
-    handleNextPageClicked,
-    handleMainPageClicked,
-  } = usePagination({
-    page,
-    count,
-    onChange,
-    siblings,
-  })
+  options = [
+    { title: '10', value: '10' },
+    { title: '20', value: '20' },
+    { title: '30', value: '30' },
+    { title: '50', value: '50' },
+    { title: '100', value: '100' },
+  ],
+  setLimit,
+  setPage,
+  totalPages,
+}: Props) => {
+  if (totalPages < page) {
+    setPage(totalPages ? totalPages : 1)
+  }
+  if (totalPages === 0) {
+    totalPages = 1
+  }
 
-  const showPerPageSelect = !!perPage && !!perPageOptions && !!onPerPageChange
+  const array = returnPaginationRange(totalPages, page, 1)
+
+  const onPageClick = (value: number | string) => {
+    hahdlePageChange(value, page, setPage, totalPages)
+  }
+
+  const onPageKeyPress = (e: React.KeyboardEvent, value: number | string) => {
+    if (e.code === 'Enter') {
+      hahdlePageChange(value, page, setPage, totalPages)
+    }
+  }
+
+  const onLimitChange = (value: number) => {
+    setLimit(value)
+  }
+
+  useEffect(() => {
+    getPage(page, limit)
+  }, [page, limit])
 
   return (
-    <div className={s.root}>
-      <div className={s.container}>
-        <PrevButton onClick={handlePreviousPageClicked} disabled={isFirstPage} />
-
-        <MainPaginationButtons
-          currentPage={page}
-          onClick={handleMainPageClicked}
-          paginationRange={paginationRange}
+    <div className={`${s.container} ${className}`}>
+      <ul className={s.items}>
+        <li
+          className={page === 1 ? s.leftItem : ''}
+          onClick={() => !(page === 1) && onPageClick('&lsaquo;')}
+          onKeyUp={e => !(page === 1) && onPageKeyPress(e, '&lsaquo;')}
+          tabIndex={!(page === 1) ? 2 : undefined}
+        >
+          <span>&lsaquo;</span>
+        </li>
+        {array.map((value, id) => (
+          <li
+            className={`${value === page ? s.item : ''} ${s.hover}`}
+            key={value}
+            onClick={() => onPageClick(value)}
+            onKeyUp={e => onPageKeyPress(e, value)}
+            tabIndex={id + 2}
+          >
+            {value}
+          </li>
+        ))}
+        <li
+          className={page === totalPages ? s.rightItem : ''}
+          onClick={() => !(page === totalPages) && onPageClick('&rsaquo;')}
+          onKeyUp={e => !(page === totalPages) && onPageKeyPress(e, '&rsaquo;')}
+          tabIndex={!(page === totalPages) ? array.length + 2 : undefined}
+        >
+          <span>&rsaquo;</span>
+        </li>
+      </ul>
+      <div className={s.wrapperForSelect}>
+        <div>
+          <Typography variant="body2">Показать</Typography>
+        </div>
+        <Select
+          onValueChange={value => onLimitChange(+value)}
+          options={options}
+          variant={'default'}
+          className={s.select}
         />
-
-        <NextButton onClick={handleNextPageClicked} disabled={isLastPage} />
+        <div>
+          <Typography variant="body2">на странице</Typography>
+        </div>
       </div>
-
-      {showPerPageSelect && (
-        <PerPageSelect
-          {...{
-            perPage,
-            perPageOptions,
-            onPerPageChange,
-          }}
-        />
-      )}
-    </div>
-  )
-}
-
-type NavigationButtonProps = {
-  onClick: () => void
-  disabled?: boolean
-}
-
-type PageButtonProps = NavigationButtonProps & {
-  page: number
-  selected: boolean
-}
-
-const Dots: FC = () => {
-  return <span className={s.dots}>&#8230;</span>
-}
-const PageButton: FC<PageButtonProps> = ({ onClick, disabled, selected, page }) => {
-  return (
-    <button onClick={onClick} disabled={selected || disabled} className={s.pageButton}>
-      {page}
-    </button>
-  )
-}
-const PrevButton: FC<NavigationButtonProps> = ({ onClick, disabled }) => {
-  return (
-    <button className={s.item} onClick={onClick} disabled={disabled}>
-      <Typography className={s.icon}> {'<'} </Typography>
-    </button>
-  )
-}
-
-const NextButton: FC<NavigationButtonProps> = ({ onClick, disabled }) => {
-  return (
-    <button className={s.item} onClick={onClick} disabled={disabled}>
-      <Typography className={s.icon}> {'>'} </Typography>
-    </button>
-  )
-}
-
-type MainPaginationButtonsProps = {
-  paginationRange: (number | string)[]
-  currentPage: number
-  onClick: (pageNumber: number) => () => void
-}
-
-const MainPaginationButtons: FC<MainPaginationButtonsProps> = ({
-  paginationRange,
-  currentPage,
-  onClick,
-}) => {
-  return (
-    <>
-      {paginationRange.map((page: number | string, index) => {
-        const isSelected = page === currentPage
-
-        if (typeof page !== 'number') {
-          return <Dots key={index} />
-        }
-
-        return <PageButton key={index} page={page} selected={isSelected} onClick={onClick(page)} />
-      })}
-    </>
-  )
-}
-
-export type PerPageSelectProps = {
-  perPage: number
-  perPageOptions: number[]
-  onPerPageChange: (itemPerPage: number) => void
-}
-
-export const PerPageSelect: FC<PerPageSelectProps> = ({
-  perPage,
-  perPageOptions,
-  onPerPageChange,
-}) => {
-  return (
-    <div className={s.selectBox}>
-      Показать
-      {/*  <Select
-        className={classNames.select}
-        value={perPage}
-        options={perPageOptions}
-        onChangeValue={onPerPageChange}
-      /> */}
-      на странице
     </div>
   )
 }

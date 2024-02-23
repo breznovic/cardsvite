@@ -1,45 +1,41 @@
 import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { Pagination } from './Pagination'
 
 const meta = {
-  title: 'Components/Pagination',
-  component: Pagination,
-  tags: ['autodocs'],
-  argTypes: {
-    onChange: { actions: 'clicked' },
+  args: {
+    limit: 10,
+    page: 1,
+    totalPages: 50,
   },
+  component: Pagination,
+  decorators: [Story => <Story />],
+  tags: ['autodocs'],
+  title: 'Components/Pagination',
 } satisfies Meta<typeof Pagination>
 
 export default meta
+
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {
-    count: 300,
-    page: 1,
-    onChange: () => ({}),
-    perPage: 10,
-    perPageOptions: [5, 10],
-    onPerPageChange: () => {},
-  },
-
   render: args => {
-    const [page, setPage] = useState(1)
-    const [perPage, setPerPage] = useState(10)
+    const [page, setPage] = useState(args.page)
+    const [limit, setLimit] = useState(args.limit)
 
     return (
-      <>
-        <Pagination
-          {...args}
-          count={300}
-          page={page}
-          onChange={setPage}
-          perPageOptions={[10, 20, 30]}
-          perPage={perPage}
-          onPerPageChange={setPerPage}
-        />
-      </>
+      <Pagination
+        getPage={() => {}}
+        limit={limit}
+        page={page}
+        setLimit={itemsPerPage => {
+          setLimit(itemsPerPage)
+        }}
+        setPage={currentPage => {
+          setPage(currentPage)
+        }}
+        totalPages={args.totalPages}
+      />
     )
   },
 }

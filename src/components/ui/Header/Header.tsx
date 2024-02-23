@@ -1,8 +1,6 @@
-import { Button } from '@/components/ui/button/button'
-
 import s from './Header.module.scss'
-
 import Logo from '../../../assets/images/Header/Logo'
+import { Button } from '../Button/button'
 
 type HeaderProps = {
   isLoggedIn: boolean
