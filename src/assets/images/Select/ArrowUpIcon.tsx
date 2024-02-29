@@ -1,15 +1,17 @@
-export type ArrowIconProps = {
+export type IconProps = {
+  className?: string
   color?: string
-  onClick?: (e: any) => void
+  height?: string
+  width?: string
 }
 
-const ArrowUpIcon = ({ color }: ArrowIconProps) => {
+const ArrowUpIcon = ({ color, height, width }: IconProps) => {
   return (
     <svg
       fill={'none'}
-      height={'16'}
+      height={height}
       viewBox={'0 0 24 24'}
-      width={'16'}
+      width={width}
       xmlns={'http://www.w3.org/2000/svg'}
     >
       <g clipPath={'url(#clip0_5661_1854)'}>

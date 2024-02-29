@@ -1,8 +1,9 @@
-import { ArrowIconProps } from '@/assets/images/Select/ArrowUpIcon'
+import { IconProps } from '@/assets/images/Select/ArrowUpIcon'
 
-const ArrowDownIcon = ({ color }: ArrowIconProps) => {
+const ArrowDownIcon = ({ className, color }: IconProps) => {
   return (
     <svg
+      className={className}
       fill={'none'}
       height={'16'}
       viewBox={'0 0 24 24'}
