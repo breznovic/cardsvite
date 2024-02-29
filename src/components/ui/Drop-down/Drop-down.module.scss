@@ -62,8 +62,10 @@
 }
 
 .content {
-  // position: relative;
+  position: relative;
+
   padding: 12px;
+
   background-color: var(--color-dark-700);
   border: 1px solid var(--color-dark-500);
   border-radius: 4px;
@@ -73,9 +75,6 @@
   width: 16px;
   height: 8px;
   fill: var(--color-dark-700);
-}
-
-.itemIcon {
 }
 
 .SelectTrigger[data-state='open'] {
@@ -88,4 +87,14 @@
 
 button {
   all: unset;
+}
+
+.profileContainer {
+  display: flex;
+  gap: 10px;
+  padding-right: 28px;
+}
+
+.profileName {
+  color: var(--color-dark-100);
 }
