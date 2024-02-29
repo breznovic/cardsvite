@@ -7,7 +7,12 @@ import { PlayCircle } from '@/assets/images/Drop-down/PlayCircle'
 import { ProfileIcon } from '@/assets/images/Drop-down/ProfileIcon'
 import { SignOutIcon } from '@/assets/images/Drop-down/SignOutIcon'
 import img from '@/assets/images/Drop-down/img.jpg'
-import { DropDown, DropDownMenuItemWithIcon } from '@/components/ui/Drop-down/Drop-down'
+import {
+  DropDown,
+  DropDownItemProfile,
+  DropDownMenuItemWithIcon,
+} from '@/components/ui/Drop-down/Drop-down'
+import { ProfileInfo } from '@/components/ui/Drop-down/Profile-Info'
 
 import s from '@/components/ui/Drop-down/Drop-down.module.scss'
 
@@ -58,11 +63,9 @@ export const DefaultWithProfile = {
             </button>
           }
         >
-          <DropDownMenuItemWithIcon
-            icon={<img src={img} style={{ height: '36px', width: '36px' }} />}
-            onSelect={() => {}}
-            text={userInfo.email}
-          />
+          <DropDownItemProfile>
+            <ProfileInfo {...userInfo} />
+          </DropDownItemProfile>
           <DropDownMenuItemWithIcon
             icon={<ProfileIcon />}
             onSelect={() => {}}
