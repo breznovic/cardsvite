@@ -1,0 +1,23 @@
+.activeHeadCell {
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--color-dark-100);
+  }
+}
+
+.sortCell {
+  position: relative;
+}
+
+.sortIconButton {
+  padding: 4px 0;
+}
+
+.sortIcon {
+  position: absolute;
+  top: 50%;
+  right: -1.6rem;
+  transform: translateY(-50%);
+}
