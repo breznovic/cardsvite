@@ -1,8 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react'
-
 import { RadioItem } from '@/components/ui/RadioGroup/RadioItem/RadioItem'
 import * as RadioGroupRadix from '@radix-ui/react-radio-group'
-
 import s from './RadioGroup.module.scss'
 
 export type OptionType = {

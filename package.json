@@ -27,7 +27,8 @@
     "g": "^2.0.1",
     "pnpm": "^8.14.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.50.1"
   },
   "devDependencies": {
     "@it-incubator/eslint-config": "^1.0.2",
